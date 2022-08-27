@@ -1,0 +1,46 @@
+{% extends 'bootstrap/base.html' %}
+{%import "bootstrap/wtf.html" as wtf%}
+
+
+{% block title %}News Feeds{% endblock %}
+{% block styles %}
+{{ super() }}
+<link rel='stylesheet' href='https://s3.amazonaws.com/codecademy-content/projects/bootstrap.min.css'>
+<link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700'>
+
+	<link rel="stylesheet" href="{{ url_for('static', filename='css/feeds.css') }}">
+{% endblock %}
+
+{% block content %}
+{% include "header.html" %}
+
+<div class="header">
+      <div class="container">
+        <div class="row">
+          <div class="col-xs-2">
+            <h1>IBS,Hyderabad</h1>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="posts">
+      <div class="container">
+          {%for photo in photos%}
+        <div class="post">
+          <img class="avatar" src="https://s3.amazonaws.com/codecademy-content/projects/2/feedster/cbj.svg">
+          <h3>IBS Messenger</h3>
+          <p>Whats Hot going on the campus right Now?</p>
+          <img src='{{photo}}'>
+          <button class="btn">+1</button>
+        </div>
+          {%endfor%}
+      </div>
+    </div>
+  </body>
+<!-- partial -->
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js'></script><script  src="{{ url_for('static', filename='js/feeds.js') }}"></script>
+
+  {% include "footer.html" %}
+
+{% endblock %}
