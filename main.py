@@ -103,7 +103,6 @@ def feeds():
     for data in all_photos:
         photo = url_for('static', filename='user_posts/' +data.user_post)
         list_of_all.append(photo)
-    print(list_of_all)
     return render_template("feeds.html", authenticated = current_user.is_authenticated, photos = list_of_all)
 
 @app.route('/search')
@@ -121,9 +120,6 @@ def profile():
     for  posts in user_pt:
         user_posts = url_for('static', filename='user_posts/' + posts.user_post)
         all_pts.append(user_posts)
-
-    print(all_pts)
-
     return render_template("profile.html", authenticated = current_user.is_authenticated, image_file=image_file, photos=all_pts)
 
 #
