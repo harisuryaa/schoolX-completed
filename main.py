@@ -217,4 +217,4 @@ def logout():
     return redirect(url_for('search'))
 
 if __name__ == "__main__":
-    app.run(host='172.20.10.3')
+    app.run()
