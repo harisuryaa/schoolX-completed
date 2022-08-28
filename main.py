@@ -120,7 +120,7 @@ def profile():
     for  posts in user_pt:
         user_posts = url_for('static', filename='user_posts/' + posts.user_post)
         all_pts.append(user_posts)
-    return render_template("profile.html", authenticated = current_user.is_authenticated, image_file=image_file, photos=all_pts)
+    return render_template("profile.html", authenticated = current_user.is_authenticated, image_file=image_file, photos=all_pts ,current_user=current_user)
 
 #
 #
