@@ -185,7 +185,7 @@ def register():
         )
         db.session.add(new_user)
         db.session.commit()
-        login_user(new_user)
+        login_user(new_user,remember=True)
         return redirect(url_for("profile"))
     return render_template("register.html",form=form, authenticated = current_user.is_authenticated)
 
@@ -206,7 +206,7 @@ def login():
                 flash("Worng Password")
                 return redirect(url_for('login'))
             else:
-                login_user(user)
+                login_user(user,remember=True)
                 return redirect(url_for('profile'))
         return render_template("login.html",form=form, authenticated = current_user.is_authenticated)
 
