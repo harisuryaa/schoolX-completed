@@ -16,10 +16,7 @@ from flask_login import UserMixin, login_user, LoginManager, login_required, cur
 from flask_gravatar import Gravatar
 from flask_login import LoginManager
 from forms import CreatePostForm, RegisterForm, LoginForm, CommentForm, UpdateAccountForm,PostForm
-import whatimage
-# import pillow_heif
-#
-# import pyheif
+
 
 ADMINS= [1]
 edit = False
