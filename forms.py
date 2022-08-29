@@ -32,12 +32,12 @@ class UpdateAccountForm(FlaskForm):
     #                        validators=[DataRequired(), Length(min=2, max=20)])
     # email = StringField('Email',
     #                     validators=[DataRequired()])
-    picture = FileField('Update Profile Picture', validators=[FileAllowed(['jpg', 'png'])])
+    picture = FileField('Update Profile Picture')
     submit = SubmitField('Update')
 
 
 class PostForm(FlaskForm):
     title = StringField("Title", validators=[DataRequired()])
     content = StringField("Content", validators=[DataRequired()])
-    picture = FileField('Update Profile Picture', validators=[FileAllowed(['jpg', 'png'])])
+    picture = FileField('Update Profile Picture')
     submit = SubmitField('post')

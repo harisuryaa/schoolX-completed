@@ -1,6 +1,7 @@
+import io
 import secrets
 import os
-from PIL import Image
+from PIL import Image, ImageOps
 from flask import Flask, render_template, redirect, url_for, flash
 from flask_bootstrap import Bootstrap
 from flask_ckeditor import CKEditor
@@ -15,6 +16,10 @@ from flask_login import UserMixin, login_user, LoginManager, login_required, cur
 from flask_gravatar import Gravatar
 from flask_login import LoginManager
 from forms import CreatePostForm, RegisterForm, LoginForm, CommentForm, UpdateAccountForm,PostForm
+import whatimage
+# import pillow_heif
+#
+# import pyheif
 
 ADMINS= [1]
 edit = False
@@ -51,6 +56,8 @@ def admin_only(f):
 
 def save_picture(form_picture):
     random_hex = secrets.token_hex(8)
+
+
     _, f_ext = os.path.splitext(form_picture.filename)
     picture_fn = random_hex + f_ext
     picture_path = os.path.join(app.root_path, 'static/profile_pics', picture_fn)
@@ -58,12 +65,14 @@ def save_picture(form_picture):
     output_size = (125, 125)
     i = Image.open(form_picture)
     i.thumbnail(output_size)
+
     i.save(picture_path)
     return picture_fn
 
 def save_post(form_picture):
     random_hex = secrets.token_hex(8)
     _, f_ext = os.path.splitext(form_picture.filename)
+
     picture_fn = random_hex + f_ext
     picture_path = os.path.join(app.root_path, 'static/user_posts', picture_fn)
     form_picture.save(picture_path)
@@ -217,4 +226,4 @@ def logout():
     return redirect(url_for('search'))
 
 if __name__ == "__main__":
-    app.run()
+    app.run(host='172.20.10.3')
