@@ -93,6 +93,7 @@ class Post(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
     author = relationship('User', back_populates='posts')
+
     title = db.Column(db.String(100), nullable=False)
     date_posted = db.Column(db.DateTime, nullable=False, default=datetime.utcnow)
     content = db.Column(db.Text, nullable=False)
@@ -104,12 +105,21 @@ db.create_all()
 @app.route("/feeds")
 @login_required
 def feeds():
-    list_of_all=[]
+    list_name=[]
     all_photos = db.session.query(Post).all()
+
     for data in all_photos:
         photo = url_for('static', filename='user_posts/' +data.user_post)
-        list_of_all.append(photo)
-    return render_template("feeds.html", authenticated = current_user.is_authenticated, photos = list_of_all)
+        user_name = data.author.username
+        profile = url_for('static', filename='profile_pics/' +data.author.image_file)
+        content = data.content
+        dict = {'photo' : photo,'user_name': user_name, 'profile':profile, 'content':content}
+        list_name.append(dict)
+
+    for data in list_name:
+        print(data)
+
+    return render_template("feeds.html", authenticated = current_user.is_authenticated, photos = list_name)
 
 @app.route('/search')
 @login_required
@@ -125,7 +135,9 @@ def profile():
     # print(user_pt)
     for  posts in user_pt:
         user_posts = url_for('static', filename='user_posts/' + posts.user_post)
-        all_pts.append(user_posts)
+        content = posts.content
+        dict = {'user_posts': user_posts, 'content': content}
+        all_pts.append(dict)
     return render_template("profile.html", authenticated = current_user.is_authenticated, image_file=image_file, photos=all_pts ,current_user=current_user)
 
 #

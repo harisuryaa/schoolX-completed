@@ -26,9 +26,9 @@
 
 				<h1 class="profile-user-name" style="padding-top: 60px;">{{current_user.username}}</h1>
 
-				<a href="{{url_for('edit')}}"><button class="btn profile-edit-btn">Edit Profile</button></a>
+				<a href="{{url_for('edit')}}"><button class="btn profile-edit-btn">Change Profile</button></a>
 
-			<a href="{{url_for('post')}}" >	<button class="btn profile-settings-btn" aria-label="profile settings"><i class="fas fa-cog" aria-hidden="true"></i></button></a>
+			<a href="{{url_for('post')}}" >	<button class="btn profile-edit-btn">New Post</button></a>
 
 			</div>
 			<div class="profile-stats">
@@ -74,13 +74,12 @@
 
 			<div class="gallery-item" tabindex="0">
 
-				<img src="{{photo}}" class="gallery-image" alt="">
+				<img src="{{photo.user_posts}}" class="gallery-image" alt="">
 
 				<div class="gallery-item-info">
 
 					<ul>
-						<li class="gallery-item-likes"><span class="visually-hidden">Likes:</span><i class="fas fa-heart" aria-hidden="true"></i> 89</li>
-						<li class="gallery-item-comments"><span class="visually-hidden">Comments:</span><i class="fas fa-comment" aria-hidden="true"></i> 5</li>
+						<li class="gallery-item-comments"><span class="visually-hidden">{{photo.content}}</span><i class="fas fa-comment" aria-hidden="true"></i> {{photo.content}}</li>
 					</ul>
 
 				</div>

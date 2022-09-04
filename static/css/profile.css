@@ -242,6 +242,7 @@ img {
 
     .profile-image img {
         width: 7.7rem;
+        height: 100px;
     }
 
     .profile-user-settings {
@@ -358,7 +359,7 @@ Remove or comment-out the code block below to see how the browser will fall-back
 
         .profile-user-settings {
             display: grid;
-            grid-template-columns: auto 1fr;
+
             grid-gap: 1rem;
         }
 
@@ -376,4 +377,10 @@ Remove or comment-out the code block below to see how the browser will fall-back
             margin: 0;
         }
     }
+}
+.avatar{
+
+height: 50px;
+border-radius:50%
+
 }
