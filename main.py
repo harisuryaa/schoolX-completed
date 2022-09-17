@@ -81,7 +81,7 @@ class User(db.Model, UserMixin):
     id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String(20), unique=True, nullable=False)
     email = db.Column(db.String(120), unique=True, nullable=False)
-    image_file = db.Column(db.String(20), nullable=False, default='default.jpg')
+    image_file = db.Column(db.String(256), nullable=False, default='default.jpg')
     password = db.Column(db.String(256), nullable=False)
 
     posts = relationship('Post', back_populates='author')
@@ -97,7 +97,7 @@ class Post(db.Model):
     title = db.Column(db.String(100), nullable=False)
     date_posted = db.Column(db.DateTime, nullable=False, default=datetime.utcnow)
     content = db.Column(db.Text, nullable=False)
-    user_post = db.Column(db.String(20), nullable=False)
+    user_post = db.Column(db.String(256), nullable=False)
 
 
 db.create_all()
