@@ -86,7 +86,6 @@ class User(db.Model, UserMixin):
 
     posts = relationship('Post', back_populates='author')
 
-db.create_all()
 
 class Post(db.Model):
     __tablename__ = "post"
